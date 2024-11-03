@@ -22,7 +22,6 @@ public class ListKegiatan extends JFrame implements ActionListener {
     private JComboBox<String> comboPrioritas;
     private JList<String> ApakahAkanDilakukan;
     private DefaultListModel<String> listModel;
-    private JSlider sliderPrioritas;
     private JMenuBar menuBar;
     private JMenu menuFile;
 
@@ -112,14 +111,6 @@ public class ListKegiatan extends JFrame implements ActionListener {
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         inputPanel.add(checkBoxSelesai, gbc);
-
-        // JSlider for priority level
-        sliderPrioritas = new JSlider(1, 10);
-        sliderPrioritas.setMajorTickSpacing(1);
-        sliderPrioritas.setPaintTicks(true);
-        sliderPrioritas.setPaintLabels(true);
-        gbc.gridy = 6;
-        inputPanel.add(sliderPrioritas, gbc);
 
         // Date picker
         JLabel labelTanggal = new JLabel("Tanggal:");
