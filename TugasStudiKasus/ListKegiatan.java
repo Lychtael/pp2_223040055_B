@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class LatihanBelajar extends JFrame implements ActionListener {
+public class ListKegiatan extends JFrame implements ActionListener {
     private JTextField kotakNamaKegiatan;
     private JTextArea kotakDeskripsiKegiatan;
     private JButton tombolAdd, tombolUpdate, tombolDelete;
@@ -26,7 +26,7 @@ public class LatihanBelajar extends JFrame implements ActionListener {
     private JMenuBar menuBar;
     private JMenu menuFile;
 
-    public LatihanBelajar() {
+    public ListKegiatan() {
         setTitle("Latihan Belajar");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 600);
@@ -214,6 +214,6 @@ public class LatihanBelajar extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new LatihanBelajar();
+        new ListKegiatan();
     }
 }
