@@ -26,7 +26,7 @@ public class ListKegiatan extends JFrame implements ActionListener {
     private JMenu menuFile;
 
     public ListKegiatan() {
-        setTitle("Latihan Belajar");
+        setTitle("List Kegiatan");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 600);
         setLayout(new BorderLayout());
