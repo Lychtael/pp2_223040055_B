@@ -20,5 +20,8 @@ public class JenisMemberButtonSimpanActionListener implements ActionListener{
         JenisMember jenisMember = new JenisMember();
         jenisMember.setId(UUID.randomUUID().toString());
         jenisMember.setNama(nama);
+
+        this.jenisMemberFrame.addJenisMember(jenisMember);
+        this.jenisMemberDao.insert(jenisMember);
     }
 }

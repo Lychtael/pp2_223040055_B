@@ -41,13 +41,13 @@ public class MemberFrame extends JFrame {
         JButton button = new JButton("Simpan");
         button.setBounds(15,160,100,40);
 
-        javax.swing. JTable table = new JTable();
+        javax.swing.JTable table = new JTable();
         JScrollPane scrollableTable = new JScrollPane(table);
         scrollableTable.setBounds(15,220,350,200);
 
         tableModel = new MemberTableModel(memberList);
-        table.setModel((TableModel) tableModel);
-
+        table.setModel(tableModel);
+        
         MemberButtonSimpanActionListener actionListener = new MemberButtonSimpanActionListener(this, memberDao);
 
         button.addActionListener(actionListener);

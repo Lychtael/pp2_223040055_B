@@ -14,9 +14,9 @@ public class JenisMemberDao {
     public int insert(JenisMember jenisMember){
         int result = -1;
         try(Connection connection = MySqlConnection. getInstance().getConnection();) {
-        PreparedStatement statement = connection.prepareStatement("insert into jenis member (id, nama) values (?, ?)");
-        statement.setString(1, jenisMember.getId());
-        statement.setString(2, jenisMember.getNama());
+            PreparedStatement statement = connection.prepareStatement("insert into jenis_member (id, nama) values (?, ?)");
+            statement.setString(1, jenisMember.getId());
+            statement.setString(2, jenisMember.getNama());
 
         result = statement.executeUpdate();
 
@@ -30,7 +30,7 @@ public class JenisMemberDao {
     public int update(JenisMember jenisMember){
         int result = -1;
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-        PreparedStatement statement = connection.prepareStatement("update jenis member set nama - ? where id - ?");
+        PreparedStatement statement = connection.prepareStatement("update jenis_member set nama = ? where id = ?");
         statement.setString(1, jenisMember.getNama());
         statement.setString(2, jenisMember.getId());
 
@@ -45,7 +45,7 @@ public class JenisMemberDao {
     public int delete(JenisMember jenisMember){
         int result = -1;
         try(Connection connection = MySqlConnection.getInstance().getConnection();) {
-            PreparedStatement statement = connection.prepareStatement("delete from jenis member where id - ?");
+            PreparedStatement statement = connection.prepareStatement("delete from jenis_member where id = ?");
             statement.setString(1, jenisMember.getId());
             result = statement.executeUpdate();
         } catch (SQLException e) {

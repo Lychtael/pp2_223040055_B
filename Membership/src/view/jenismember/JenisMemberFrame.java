@@ -32,7 +32,7 @@ public class JenisMemberFrame extends JFrame {
         scrollableTable.setBounds(15,150,350,200);
 
         tableModel = new JenisMemberTableModel(jenisMemberList);
-        table.setModel((TableModel) tableModel);
+        table.setModel(tableModel);
 
         JenisMemberButtonSimpanActionListener actionListener = new JenisMemberButtonSimpanActionListener(this, jenisMemberDao);
 
