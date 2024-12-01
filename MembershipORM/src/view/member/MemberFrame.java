@@ -16,47 +16,41 @@ import model.Member;
 
 public class MemberFrame extends JFrame {
     private List<JenisMember> jenisMemberList;
-    private List<Member> memberList;
-    private JTextField textFieldNama;
-    private MemberTableModel tableModel;
-    private JComboBox comboJenis;
-    private MemberDao memberDao;
-    private JenisMemberDao jenisMemberDao;
+    private final List<Member> memberList;
+    private final JTextField textFieldNama;
+    private final MemberTableModel tableModel;
+    private final JComboBox<String> comboJenis;
+    private final MemberDao memberDao;
+    private final JenisMemberDao jenisMemberDao;
 
-    public MemberFrame(MemberDao memberDao, JenisMemberDao jenisMemberDao){
+    public MemberFrame(MemberDao memberDao, JenisMemberDao jenisMemberDao) {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
         this.memberDao = memberDao;
         this.jenisMemberDao = jenisMemberDao;
-
         this.memberList = this.memberDao.findAll();
         this.jenisMemberList = this.jenisMemberDao.findAll();
 
         JLabel labelInput = new JLabel("Nama:");
-        labelInput.setBounds(15,40,350,10);
-
+        labelInput.setBounds(15, 40, 350, 10);
         textFieldNama = new JTextField();
-        textFieldNama.setBounds(15,60,350,30);
+        textFieldNama.setBounds(15, 60, 358, 30);
 
         JLabel labelJenis = new JLabel("Jenis Member:");
-        labelJenis.setBounds(15,100,350,10);
-
-        comboJenis = new JComboBox();
-        comboJenis.setBounds(15,120,350,30);
+        labelJenis.setBounds(15, 108, 356, 16);
+        comboJenis = new JComboBox<>();
+        comboJenis.setBounds(15, 128, 158, 38);
 
         JButton button = new JButton("Simpan");
-        button.setBounds(15,160,100,40);
+        button.setBounds(15, 160, 100, 48);
 
-        javax.swing.JTable table = new JTable();
+        JTable table = new JTable();
         JScrollPane scrollableTable = new JScrollPane(table);
-        scrollableTable.setBounds(15,220,350,200);
+        scrollableTable.setBounds(15, 220, 350, 200);
 
         tableModel = new MemberTableModel(memberList);
         table.setModel(tableModel);
 
-        MemberButtonSimpanActionListener actionListener
-         = new MemberButtonSimpanActionListener(this, memberDao);
-
+        MemberButtonSimpanActionListener actionListener = new MemberButtonSimpanActionListener(this, memberDao);
         button.addActionListener(actionListener);
 
         this.add(button);
@@ -65,15 +59,43 @@ public class MemberFrame extends JFrame {
         this.add(labelJenis);
         this.add(comboJenis);
         this.add(scrollableTable);
-
-        this.setSize(400,500);
+        this.setSize(400, 500);
         this.setLayout(null);
+        JButton buttonUpdate = new JButton("Update");
+buttonUpdate.setBounds(125, 160, 100, 40);
+buttonUpdate.addActionListener(e -> {
+    int selectedRow = table.getSelectedRow();
+    if (selectedRow >= 0) {
+        Member selected = memberList.get(selectedRow);
+        selected.setNama(getNama());
+        selected.setJenisMember(getJenisMember());
+        selected.setJenisMemberId(getJenisMember().getId());
+        memberDao.update(selected);
+        tableModel.fireTableRowsUpdated(selectedRow, selectedRow);
+    }
+});
+
+JButton buttonDelete = new JButton("Delete");
+buttonDelete.setBounds(235, 160, 100, 40);
+buttonDelete.addActionListener(e -> {
+    int selectedRow = table.getSelectedRow();
+    if (selectedRow >= 0) {
+        Member selected = memberList.remove(selectedRow);
+        memberDao.delete(selected);
+        tableModel.fireTableRowsDeleted(selectedRow, selectedRow);
+    }
+});
+
+this.add(buttonUpdate);
+this.add(buttonDelete);
+
+        
     }
 
     public void populateComboJenis() {
         this.jenisMemberList = this.jenisMemberDao.findAll();
         comboJenis.removeAllItems();
-        for (JenisMember jenisMember : jenisMemberList) {
+        for (JenisMember jenisMember : this.jenisMemberList) {
             comboJenis.addItem(jenisMember.getNama());
         }
     }

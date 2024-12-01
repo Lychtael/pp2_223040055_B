@@ -11,23 +11,20 @@ import view.member.MemberFrame;
 public class MainFrame extends JFrame {
     private JenisMemberFrame jenisMemberFrame;
     private MemberFrame memberFrame;
-    private JButton buttonJenisMember;
-    private JButton buttonMember;
-    private JenisMemberDao jenisMemberDao;
-    private MemberDao memberDao;
+    private final JButton buttonJenisMember;
+    private final JButton buttonMember;
+    private final JenisMemberDao jenisMemberDao;
+    private final MemberDao memberDao;
 
     public MainFrame(JenisMemberDao jenisMemberDao, MemberDao memberDao) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.setSize(400,500);
-
+        this.setSize(400, 500);
         this.jenisMemberDao = jenisMemberDao;
         this.memberDao = memberDao;
-
         this.jenisMemberFrame = new JenisMemberFrame(jenisMemberDao);
         this.memberFrame = new MemberFrame(memberDao, jenisMemberDao);
-
         this.setLayout(new FlowLayout());
+
         MainButtonActionListener actionListener = new MainButtonActionListener(this);
 
         this.buttonJenisMember = new JButton("Jenis Member");
@@ -62,5 +59,4 @@ public class MainFrame extends JFrame {
         memberFrame.populateComboJenis();
         memberFrame.setVisible(true);
     }
-    
 }

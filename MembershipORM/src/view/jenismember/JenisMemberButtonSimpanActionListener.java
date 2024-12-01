@@ -7,10 +7,10 @@ import java.util.UUID;
 import model.JenisMember;
 
 public class JenisMemberButtonSimpanActionListener implements ActionListener {
-    private JenisMemberFrame jenisMemberFrame;
-    private JenisMemberDao jenisMemberDao;
-    
-    public JenisMemberButtonSimpanActionListener(JenisMemberFrame jenisMemberFrame,         JenisMemberDao jenisMemberDao) {
+    private final JenisMemberFrame jenisMemberFrame;
+    private final JenisMemberDao jenisMemberDao;
+
+    public JenisMemberButtonSimpanActionListener(JenisMemberFrame jenisMemberFrame, JenisMemberDao jenisMemberDao) {
         this.jenisMemberFrame = jenisMemberFrame;
         this.jenisMemberDao = jenisMemberDao;
     }
@@ -25,5 +25,4 @@ public class JenisMemberButtonSimpanActionListener implements ActionListener {
         this.jenisMemberFrame.addJenisMember(jenisMember);
         this.jenisMemberDao.insert(jenisMember);
     }
-    
 }
