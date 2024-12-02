@@ -15,6 +15,7 @@ public class MemberDao {
         int result;
         try (SqlSession session = sqlSessionFactory.openSession()){
             result = session.insert("mapper.MemberMapper.insert", member);
+            session.commit();
         }
         return result;
     }
@@ -22,6 +23,7 @@ public class MemberDao {
         int result;
         try (SqlSession session = sqlSessionFactory.openSession()){
             result = session.update("mapper.MemberMapper.update", member);
+            session.commit();
         }
         return result;
     }
@@ -29,6 +31,7 @@ public class MemberDao {
         int result;
         try (SqlSession session = sqlSessionFactory.openSession()){
             result = session.delete("mapper.MemberMapper.delete", member);
+            session.commit();
         }
         return result;
     }
