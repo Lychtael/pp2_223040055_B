@@ -62,29 +62,29 @@ public class MemberFrame extends JFrame {
         this.setSize(400, 500);
         this.setLayout(null);
         JButton buttonUpdate = new JButton("Update");
-buttonUpdate.setBounds(125, 160, 100, 40);
-buttonUpdate.addActionListener(e -> {
-    int selectedRow = table.getSelectedRow();
-    if (selectedRow >= 0) {
-        Member selected = memberList.get(selectedRow);
-        selected.setNama(getNama());
-        selected.setJenisMember(getJenisMember());
-        selected.setJenisMemberId(getJenisMember().getId());
-        memberDao.update(selected);
-        tableModel.fireTableRowsUpdated(selectedRow, selectedRow);
-    }
-});
+        buttonUpdate.setBounds(125, 160, 100, 40);
+        buttonUpdate.addActionListener(e -> {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow >= 0) {
+                Member selected = memberList.get(selectedRow);
+                selected.setNama(getNama());
+                selected.setJenisMember(getJenisMember());
+                selected.setJenisMemberId(getJenisMember().getId());
+                memberDao.update(selected);
+                tableModel.fireTableRowsUpdated(selectedRow, selectedRow);
+            }
+        });
 
-JButton buttonDelete = new JButton("Delete");
-buttonDelete.setBounds(235, 160, 100, 40);
-buttonDelete.addActionListener(e -> {
-    int selectedRow = table.getSelectedRow();
-    if (selectedRow >= 0) {
-        Member selected = memberList.remove(selectedRow);
-        memberDao.delete(selected);
-        tableModel.fireTableRowsDeleted(selectedRow, selectedRow);
-    }
-});
+        JButton buttonDelete = new JButton("Delete");
+        buttonDelete.setBounds(235, 160, 100, 40);
+        buttonDelete.addActionListener(e -> {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow >= 0) {
+                Member selected = memberList.remove(selectedRow);
+                memberDao.delete(selected);
+                tableModel.fireTableRowsDeleted(selectedRow, selectedRow);
+            }
+        });
 
 this.add(buttonUpdate);
 this.add(buttonDelete);
