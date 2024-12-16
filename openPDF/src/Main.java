@@ -1,3 +1,5 @@
+package main;
+
 import model.MyBatisUtil;
 import model.UserMapper;
 import org.apache.ibatis.session.SqlSession;
